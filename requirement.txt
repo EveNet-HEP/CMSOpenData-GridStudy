@@ -1,3 +1,4 @@
 cernopendata-client
 awkward
 vector
+coffea
