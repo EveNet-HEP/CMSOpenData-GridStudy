@@ -4,3 +4,4 @@ vector
 coffea
 fsspec-xrootd
 XRootD
+tabpfn
