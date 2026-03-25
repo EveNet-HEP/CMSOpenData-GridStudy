@@ -3,3 +3,4 @@ awkward
 vector
 coffea
 fsspec-xrootd
+XRootD
