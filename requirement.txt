@@ -1,1 +1,2 @@
 cernopendata-client
+awkward
