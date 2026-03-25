@@ -1,2 +1,3 @@
 cernopendata-client
 awkward
+vector
