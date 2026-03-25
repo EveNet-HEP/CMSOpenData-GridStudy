@@ -917,7 +917,7 @@ if __name__ == "__main__":
     parser.add_argument("--continue_training", action="store_true")
     parser.add_argument("--bkg_vs_sig_rate", default=None)
     parser.add_argument("--SSL", action="store_true", help="Use SSL pretrained model weights")
-    parser.add_argument("--wandb_dir", type=str, default="tmp")
+    parser.add_argument("--wandb_dir", type=str, default="/tmp")
     args = parser.parse_args()
 
     if not args.parameterize and (args.mX is None or args.mY is None):
