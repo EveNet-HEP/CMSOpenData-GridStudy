@@ -7,6 +7,7 @@ import requests
 import concurrent.futures
 from tqdm import tqdm
 import argparse
+import os
 
 # --- Configuration ---
 COD_API = "https://opendata.cern.ch/api/records"

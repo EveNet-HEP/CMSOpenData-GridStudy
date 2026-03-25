@@ -14,6 +14,7 @@ To run the code, we requires the following dependencies:
 ```bash
 conda create --prefix [path] python=3.12
 conda activate [path]
+pip3 install -r requirements.txt
 ```
 ### Option 1. Use our pip release
 ```
