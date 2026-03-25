@@ -81,6 +81,9 @@ def main():
     input_yaml = args.yaml
     output_json = args.output
 
+    output_dir = '/'.join(output_json.split("/")[:-1])
+    os.makedirs(output_dir, exist_ok=True)
+
     with open(input_yaml, 'r') as f:
         config = yaml.safe_load(f)
 
