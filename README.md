@@ -60,4 +60,10 @@ To run the ntuple production
 # If you have multiple CPU cores, you can specify the number of workers to speed up the processing
 python3 process_data.py Farm/output_list.json --workers [nCPU] --outdir [output/ntupledir]
 ```
-
+## Training
+### EveNet
+```aiignore
+python3 train_pc_mva.py --base_dir [data_dir] --yaml_path config/sample_bbWW.yaml --mX [mX] --mY [mY] --out_dir [result_dir] --learning_rate 0.0003  [--pretrain] --stage train  [--use_adapter] --batch_size 4096 --gamma 0.0 --epochs 25
+```
+### XGBoost
+```aiignore
