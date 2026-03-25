@@ -80,7 +80,7 @@ Output will be
 python3 train_tabular_mva.py --base_dir [data_dir --yaml_path config/sample_bbWW.yaml --features_yaml config/feature_bbWW.yaml --out_dir [out_dir] --model [xgb/tabpfn] --mX [mx] --mY [my] --stage train evaluate predict
 ```
 Output will be similar as EveNet ones.
-## Grid Script Generation
+## Grid Script Generation [Optional]
 To generate the grid scripts for the ntuple production, you can use the following command:
 ```bash
 python3 Make_script.py --farm_dir Farm --json_file Farm/output_list.json --data_dir [data_dir] --out_dir [out_dir]
