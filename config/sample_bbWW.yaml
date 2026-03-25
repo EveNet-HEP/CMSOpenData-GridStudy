@@ -1,0 +1,48 @@
+signal:
+  type: signal
+  wildcard: "NMSSM_XToYHTo2B2WTo2B2Q1L1Nu*"
+  mx: [0, 1000]
+  my: [0, 1000]
+
+background:
+  tt1l:
+    wildcard: "TTToSemiLeptonic_TuneCP5_13TeV-powheg-pythia8"
+    xsec: 365.35
+    max_events: 500000
+    nEvent: 144722000
+    name: ttbar
+  DYBJets_pt100to200:
+    wildcard: "DYBJetsToLL_M-50_Zpt-100to200_TuneCP5_13TeV-madgraphMLM-pythia8"
+    xsec: 3.222
+    nEvent: 8848155
+    name: DY+HF
+  DYBJets_pt200toInf:
+    wildcard: "DYBJetsToLL_M-50_Zpt-200toInf_TuneCP5_13TeV-madgraphMLM-pythia8"
+    xsec: 0.6181
+    nEvent: 887122
+    name: DY+HF
+  SingleTop_s_channel_lepon:
+    wildcard: "ST_s-channel_4f_leptonDecays_TuneCP5_13TeV-amcatnlo-pythia8"
+    xsec: 3.36
+    nEvent: 5471000
+    name: singleTop
+  SingleTop_t_channel_top:
+    wildcard: "/ST_t-channel_top_4f_InclusiveDecays_TuneCP5CR1_13TeV-powheg-madspin-pythia8"
+    xsec: 136
+    nEvent: 25457000
+    name: singleTop
+  SingleTop_t_channel_antitop:
+    wildcard: "ST_t-channel_antitop_4f_InclusiveDecays_TuneCP5_13TeV-powheg-madspin-pythia8"
+    xsec: 81
+    nEvent: 30609000
+    name: singleTop
+  tW_top:
+    wildcard: "ST_tW_top_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8"
+    xsec: 35.8
+    nEvent: 2491000
+    name: singleTop
+  tW_antitop:
+    wildcard: "ST_tW_antitop_5f_inclusiveDecays_TuneCP5_13TeV-powheg-pythia8"
+    xsec: 35.8
+    nEvent: 2554000
+    name: singleTop
