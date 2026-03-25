@@ -57,6 +57,7 @@ python3 resolve_sample.py --yaml config/sample_bbWW.yaml --output Farm/output_li
 ```
 To run the ntuple production
 ```bash
-python3 process_data.py Farm/output_list.json --workers 4 --outdir [output/ntupledir]
+# If you have multiple CPU cores, you can specify the number of workers to speed up the processing
+python3 process_data.py Farm/output_list.json --workers [nCPU] --outdir [output/ntupledir]
 ```
 
