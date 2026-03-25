@@ -62,9 +62,18 @@ python3 process_data.py Farm/output_list.json --workers [nCPU] --outdir [output/
 ```
 ## Machine Learning 
 ### EveNet
-`--stage` configures the training stage, which can be set to `train`, `predict`, `evaluate`. It could also be sequentially run with `--stage train predict evalute`.
+`--stage` configures the training stage, which can be set to `train`, `predict`, `evaluate`. It could also be sequentially run with `--stage train predict evalute`. 
 ```aiignore
-python3 train_pc_mva.py --base_dir [data_dir] --yaml_path config/sample_bbWW.yaml --mX [mX] --mY [mY] --out_dir [result_dir] --learning_rate 0.0003  [--pretrain] --stage [train/predict/evaluate]  [--use_adapter] --batch_size 4096 --gamma 0.0 --epochs 25
+python3 train_pc_mva.py --base_dir [data_dir] --yaml_path config/sample_bbWW.yaml --mX [mX] --mY [mY] --out_dir [result_dir] --learning_rate 0.0003  [--pretrain] --stage [train/predict/evaluate]  [--use_adapter] --wandb_dir [tmp_dir] --batch_size 4096 --gamma 0.0 --epochs 25
+```
+Output will be
+```aiignore
+[result_dir]/[mva_method]/individual/MX-[mX]_MY-[mY]/
+├── checkpoints/
+│   ├── model_epoch_0.pt
+├── training_log.json # Training parameters and metrics logged during training
+├── prediction_xxx.pnz # Prediction results for the test set
+├── eval_metrics_xxx.json # Evaluation metrics such as AUC, accuracy, etc.
 ```
 ### XGBoost
 ```aiignore
