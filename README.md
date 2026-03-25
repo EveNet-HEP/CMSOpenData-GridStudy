@@ -75,10 +75,11 @@ Output will be
 ├── prediction_xxx.pnz # Prediction results for the test set
 ├── eval_metrics_xxx.json # Evaluation metrics such as AUC, accuracy, etc.
 ```
-### XGBoost
+### XGBoost/TabPFN
 ```aiignore
-python3 train_tabular_mva.py --base_dir [data_dir --yaml_path config/sample_bbWW.yaml --features_yaml config/feature_bbWW.yaml --out_dir [out_dir] --model xgb --mX 900 --mY 600 --stage train evaluate predict
+python3 train_tabular_mva.py --base_dir [data_dir --yaml_path config/sample_bbWW.yaml --features_yaml config/feature_bbWW.yaml --out_dir [out_dir] --model [xgb/tabpfn] --mX [mx] --mY [my] --stage train evaluate predict
 ```
+Output will be similar as EveNet ones.
 ## Grid Script Generation
 To generate the grid scripts for the ntuple production, you can use the following command:
 ```bash
