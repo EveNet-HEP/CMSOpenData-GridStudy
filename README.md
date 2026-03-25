@@ -55,4 +55,8 @@ To fetch the input information
 ```bash
 python3 resolve_sample.py --yaml config/sample_bbWW.yaml --output Farm/output_list.json
 ```
+To run the ntuple production
+```bash
+python3 process_data.py Farm/output_list.json --workers 4 --outdir [output/ntupledir]
+```
 
