@@ -46,3 +46,7 @@ background:
     nEvent: 144722000 # Obtain from CMS Open Data Portal
     name: ttbar # Name of the background process
 ```
+To fetch the input information
+```bash
+python3 resolve_sample.py --yaml config/sample_bbWW.yaml --output Farm/output_list.json
+111
