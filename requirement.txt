@@ -2,3 +2,4 @@ cernopendata-client
 awkward
 vector
 coffea
+fsspec-xrootd
