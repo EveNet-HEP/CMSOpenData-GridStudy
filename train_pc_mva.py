@@ -648,7 +648,7 @@ def run_pipeline(args):
                 'project': 'EveNet-GridSearch',
                 'name': f"{model_str}-{mode_str}-{mass_target}{'-test' if args.wandb_test else ''}{args.wandb_tag}",
                 'entity': "ytchou97-university-of-washington",
-                'dir': "/pscratch/sd/t/tihsu/tmp/wandb"
+                'dir': args.wandb_dir
             },
             pretrained=args.pretrain,
             pretrained_path="/global/cfs/cdirs/m5019/avencast/Checkpoints/checkpoints.20M.ablation.4.newcls/last.ckpt" if not args.SSL else "/global/cfs/cdirs/m5019/avencast/Checkpoints/checkpoints.20M.ablation.1/last.ckpt",
@@ -917,6 +917,7 @@ if __name__ == "__main__":
     parser.add_argument("--continue_training", action="store_true")
     parser.add_argument("--bkg_vs_sig_rate", default=None)
     parser.add_argument("--SSL", action="store_true", help="Use SSL pretrained model weights")
+    parser.add_argument("--wandb_dir", type=str, default="/tmp")
     args = parser.parse_args()
 
     if not args.parameterize and (args.mX is None or args.mY is None):
