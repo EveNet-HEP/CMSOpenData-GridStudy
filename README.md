@@ -29,7 +29,7 @@ cd EveNet-Lite; export PYTHONPATH=$(pwd):$PYTHONPATH # If you want to use the so
 ```
 
 ## Data Information
-The CMS Open Data used in this study is available at [CMS Open Data Portal](https://opendata.cern.ch/record/10000). 
+The CMS Open Data used in this study is available at [CMS Open Data Portal](https://opendata.cern.ch/). 
 The data includes a variety of datasets. In this study, we focus on the $X\rightarrow YH\rightarrow b\bar{b}WW$ channel, 
 where we stores all the singal and background samples in the `config/samples.yaml` file.
 ```yaml
@@ -50,4 +50,4 @@ background:
 To fetch the input information
 ```bash
 python3 resolve_sample.py --yaml config/sample_bbWW.yaml --output Farm/output_list.json
-111
+```
