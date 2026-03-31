@@ -643,11 +643,11 @@ def run_pipeline(args):
             sic_min_bkg_events=10,
             normalization_rules=normalization_rules if args.parameterize else None,
             normalization_stats=normalization_stats,
-            use_wandb=True,
+            use_wandb= "WANDB_API_KEY" in os.environ,
             wandb={
                 'project': 'EveNet-GridSearch',
                 'name': f"{model_str}-{mode_str}-{mass_target}{'-test' if args.wandb_test else ''}{args.wandb_tag}",
-                'entity': "ytchou97-university-of-washington",
+                # 'entity': "ytchou97-university-of-washington",
                 'dir': args.wandb_dir
             },
             pretrained= (args.pretrain is not None),
