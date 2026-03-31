@@ -5,8 +5,8 @@ The study includes a detailed analysis of the data processing and storage requir
 
 ## Installation
 ```aiignore
-git clone https://github.com/EveNet-HEP/CMSOpenData_GridStudy.git
-cd CMSOpenData_GridStudy
+git clone https://github.com/EveNet-HEP/CMSOpenData-GridStudy.git
+cd CMSOpenData-GridStudy
 ```
 To run the code, we requires the following dependencies:
 - Python 3.12 or higher
