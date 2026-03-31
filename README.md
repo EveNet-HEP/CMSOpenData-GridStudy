@@ -74,11 +74,34 @@ python3 process_data.py Farm/output_list.json --workers [nCPU] --outdir [output/
 ### From Hugging Face Datasets [Recommended]
 We also provide the processed datasets on [Hugging Face Hub](https://huggingface.co/datasets/Avencast/EveNet-GridStudy-CMSOpenData), which can be easily loaded with the following command:
 (`local-dir` could be replaced with any path you want to store the dataset)
+
+#### 🔹 Download full dataset
 ```bash
 hf download Avencast/EveNet-GridStudy-CMSOpenData \
   --repo-type dataset \
   --local-dir database
 ````
+#### 🔹 Download background samples only
+```bash
+hf download Avencast/EveNet-GridStudy-CMSOpenData \
+  DYBJets_pt100to200 DYBJets_pt200toInf \
+  ggHtautau VBFHtautau \
+  SingleTop_s_channel_lepon \
+  SingleTop_t_channel_top \
+  SingleTop_t_channel_antitop \
+  tt1l tW_top tW_antitop \
+  --repo-type dataset \
+  --local-dir database_bkg \
+  --resume-download
+```
+#### 🔹 Download a single signal point (quick test)
+```bash
+hf download Avencast/EveNet-GridStudy-CMSOpenData \
+  MX-300_MY-80 \
+  --repo-type dataset \
+  --local-dir database_test \
+  --resume-download
+```
 
 ## Machine Learning 
 ### EveNet
