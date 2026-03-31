@@ -1,4 +1,4 @@
-# CMSOpenData_GridStudy
+# CMSOpenData GridStudy
 This repository contains the code and documentation for the CMS Open Data Grid Study,
 which is an analysis of the performance of the CMS Open Data on a grid computing infrastructure.
 The study includes a detailed analysis of the data processing and storage requirements.
