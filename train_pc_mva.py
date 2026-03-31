@@ -365,7 +365,7 @@ def run_pipeline(args):
         mode_str = "individual"
     mass_target = "All" if args.parameterize else f"MX-{args.mX}_MY-{args.mY}"
     model_str = "evenet-pretrain" if args.pretrain else "evenet-scratch"
-    if args.pretrain and args.SSL:
+    if args.pretrain and "SSL" in args.pretrain:
         model_str = "evenet-SSL"
     out_dir = Path(args.out_dir) / model_str / mode_str / mass_target
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -650,8 +650,8 @@ def run_pipeline(args):
                 'entity': "ytchou97-university-of-washington",
                 'dir': args.wandb_dir
             },
-            pretrained=args.pretrain,
-            pretrained_path="/global/cfs/cdirs/m5019/avencast/Checkpoints/checkpoints.20M.ablation.4.newcls/last.ckpt" if not args.SSL else "/global/cfs/cdirs/m5019/avencast/Checkpoints/checkpoints.20M.ablation.1/last.ckpt",
+            pretrained= (args.pretrain is not None),
+            pretrained_path=args.pretrain,
             pretrained_source="local",
             module_lists=module_lists,
             lr=learning_rates,
@@ -896,7 +896,7 @@ if __name__ == "__main__":
     parser.add_argument("--out_dir", type=str, default="results")
     parser.add_argument("--in_dir", type=str, default=None, help="input directory that differs from out_dir")
     parser.add_argument("--wandb_tag", type=str, default="")
-    parser.add_argument("--pretrain", action="store_true", help="Use pretrained model weights")
+    parser.add_argument("--pretrain", type=str, default=None, help="pretrained model weights path")
     parser.add_argument("--learning_rate", type=float, default=1e-3, help="Learning rate for training")
     parser.add_argument("--param-mx-step", type=int, default=1)
     parser.add_argument("--param-my-step", type=int, default=1)
@@ -916,7 +916,6 @@ if __name__ == "__main__":
     parser.add_argument("--use_adapter", action="store_true")
     parser.add_argument("--continue_training", action="store_true")
     parser.add_argument("--bkg_vs_sig_rate", default=None)
-    parser.add_argument("--SSL", action="store_true", help="Use SSL pretrained model weights")
     parser.add_argument("--wandb_dir", type=str, default="/tmp")
     args = parser.parse_args()
 

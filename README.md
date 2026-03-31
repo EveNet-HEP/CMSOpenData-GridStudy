@@ -32,11 +32,17 @@ cd EveNet-Lite; export PYTHONPATH=$(pwd):$PYTHONPATH # If you want to use the so
 export WANDB_API_KEY=[your_wandb_api_key]
 ```
 
-## Download Pre-trained Models
-To download the pre-trained models, you can use the following command:
+### Download Pre-trained Models
+To download the pre-trained models from [Hugging Face Hub](https://huggingface.co/Avencast/EveNet), you can use the following command (`local-dir` could be replaced with any path you want)
 ```bash
+hf download Avencast/EveNet --local-dir pretrain-weights
+# nominal ckpt: checkpoints.20M.a4.last.ckpt
+# SSL ckpt: SSL.20M.last.ckpt
+```
+
 
 ## Data Inputs
+### From CMS Open Data [Optional]
 The CMS Open Data used in this study is available at [CMS Open Data Portal](https://opendata.cern.ch/). 
 The data includes a variety of datasets. In this study, we focus on the $X\rightarrow YH\rightarrow b\bar{b}WW$ channel, 
 where we stores all the singal and background samples in the `config/samples.yaml` file.
@@ -64,15 +70,27 @@ To run the ntuple production
 # If you have multiple CPU cores, you can specify the number of workers to speed up the processing
 python3 process_data.py Farm/output_list.json --workers [nCPU] --outdir [output/ntupledir]
 ```
+
+### From Hugging Face Datasets [Recommended]
+We also provide the processed datasets on [Hugging Face Hub](https://huggingface.co/datasets/Avencast/EveNet-GridStudy-CMSOpenData), which can be easily loaded with the following command `local-dir` could be replaced with any path you want to store the dataset.:
+```bash
+hf download Avencast/EveNet-GridStudy-CMSOpenData \
+  --repo-type dataset \
+  --local-dir database
+````
+
 ## Machine Learning 
 ### EveNet
 `--stage` configures the training stage, which can be set to `train`, `predict`, `evaluate`. It could also be sequentially run with `--stage train predict evalute`. 
 ```aiignore
-python3 train_pc_mva.py --base_dir [data_dir] --yaml_path config/sample_bbWW.yaml --mX [mX] --mY [mY] --out_dir [result_dir] --learning_rate 0.0003  [--pretrain] --stage [train/predict/evaluate]  [--use_adapter] --wandb_dir [tmp_dir] --batch_size 4096 --gamma 0.0 --epochs 25
+# Nominal pretrain
+python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX [mX] --mY [mY] --out_dir result --learning_rate 0.0003  --pretrain pretrain-weights/checkpoints.20M.a4.last.ckpt --stage [train/predict/evaluate]  [--use_adapter] --wandb_dir /tmp --batch_size 4096 --gamma 0.0 --epochs 25
+python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX [mX] --mY [mY] --out_dir result --learning_rate 0.0003  --pretrain pretrain-weights/SSL.20M.last.ckpt --stage [train/predict/evaluate]  [--use_adapter] --wandb_dir /tmp --batch_size 4096 --gamma 0.0 --epochs 25
+python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX [mX] --mY [mY] --out_dir result --learning_rate 0.0003   --stage [train/predict/evaluate]  [--use_adapter] --wandb_dir /tmp --batch_size 4096 --gamma 0.0 --epochs 25
 ```
 Output will be
 ```aiignore
-[result_dir]/[mva_method]/individual/MX-[mX]_MY-[mY]/
+result/[mva_method]/individual/MX-[mX]_MY-[mY]/
 ├── checkpoints/
 │   ├── model_epoch_0.pt
 ├── training_log.json # Training parameters and metrics logged during training
@@ -81,7 +99,7 @@ Output will be
 ```
 ### XGBoost/TabPFN
 ```aiignore
-python3 train_tabular_mva.py --base_dir [data_dir --yaml_path config/sample_bbWW.yaml --features_yaml config/feature_bbWW.yaml --out_dir [out_dir] --model [xgb/tabpfn] --mX [mx] --mY [my] --stage train evaluate predict
+python3 train_tabular_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --features_yaml config/feature_bbWW.yaml --out_dir [out_dir] --model [xgb/tabpfn] --mX [mx] --mY [my] --stage train evaluate predict
 ```
 Output will be similar as EveNet ones.
 ## Grid Script Generation [Optional]
