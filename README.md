@@ -32,6 +32,10 @@ cd EveNet-Lite; export PYTHONPATH=$(pwd):$PYTHONPATH # If you want to use the so
 export WANDB_API_KEY=[your_wandb_api_key]
 ```
 
+## Download Pre-trained Models
+To download the pre-trained models, you can use the following command:
+```bash
+
 ## Data Inputs
 The CMS Open Data used in this study is available at [CMS Open Data Portal](https://opendata.cern.ch/). 
 The data includes a variety of datasets. In this study, we focus on the $X\rightarrow YH\rightarrow b\bar{b}WW$ channel, 

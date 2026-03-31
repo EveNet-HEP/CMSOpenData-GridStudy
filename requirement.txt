@@ -6,3 +6,4 @@ fsspec-xrootd
 XRootD
 tabpfn
 xgboost
+huggingface_hub[cli]
