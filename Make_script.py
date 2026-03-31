@@ -33,6 +33,13 @@ def parse_args():
         help="Base directory for the output (used in the generated commands)",
         required=True
     )
+    parser.add_argument(
+        "--pretrain-weight",
+        type=str,
+        default=None,
+        help="Pre-trained weight",
+        required=True
+    )
     return parser.parse_args()
 
 
@@ -125,7 +132,7 @@ def generate_shell_scripts(args):
                 files[f"scratch_{mode}"].write(base_cmd_pc.format(mX=mX, mY=mY) + f" --stage {mode} --batch_size 2048 --gamma 0.0 --epochs 20 \n")
 
                 # 2. Pretrain
-                files[f"pretrain_{mode}"].write(base_cmd_pc.format(mX=mX, mY=mY) + f" --pretrain --stage {mode}  --use_adapter --batch_size 4096 --gamma 0.0 --epochs 25 \n")
+                files[f"pretrain_{mode}"].write(base_cmd_pc.format(mX=mX, mY=mY) + f" --pretrain {args.pretrain_weight}--stage {mode}  --use_adapter --batch_size 4096 --gamma 0.0 --epochs 25 \n")
 
                 # 3. XGBoost
                 files[f"xgboost_{mode}"].write(
@@ -143,7 +150,7 @@ def generate_shell_scripts(args):
         # train
             mX = 500 # deosn't matter
             mY = 90 # deosn't matter
-            cmd = (base_cmd_pc.format(mX=mX, mY=mY) + f" --stage train --parameterize  --pretrain  --param-mx-step {num_sparse} --param-my-step {num_sparse} --batch_size 2048 --gamma 0.0 --epochs 30 --bkg_vs_sig_rate 5 ")
+            cmd = (base_cmd_pc.format(mX=mX, mY=mY) + f" --stage train --parameterize  --pretrain {args.pretrain_weight} --param-mx-step {num_sparse} --param-my-step {num_sparse} --batch_size 2048 --gamma 0.0 --epochs 30 --bkg_vs_sig_rate 5 ")
             f.write(f'bash -c "source ../NERSC/export_DDP_vars.sh && {cmd}"\n')
     with open(os.path.join(farm_dir, f"run_param_predict_pretrain.sh"), "w") as f:
         # predict, eval
@@ -153,7 +160,7 @@ def generate_shell_scripts(args):
                 if match:
                     mX = match.group(1)
                     mY = match.group(2)
-                    f.write(base_cmd_pc.format(mX=mX, mY=mY) + f" --stage predict --parameterize --pretrain  --param-mx-step {num_sparse} --param-my-step {num_sparse} --batch_size 2048 \n")
+                    f.write(base_cmd_pc.format(mX=mX, mY=mY) + f" --stage predict --parameterize --pretrain {args.pretrain_weight}  --param-mx-step {num_sparse} --param-my-step {num_sparse} --batch_size 2048 \n")
 
     with open(os.path.join(farm_dir, f"run_param_evaluate_pretrain.sh"), "w") as f:
         # predict, eval
@@ -163,7 +170,7 @@ def generate_shell_scripts(args):
                 if match:
                     mX = match.group(1)
                     mY = match.group(2)
-                    f.write(base_cmd_pc.format(mX=mX, mY=mY) + f" --stage evaluate --parameterize --pretrain --param-mx-step {num_sparse} --param-my-step {num_sparse} --batch_size 2048\n")
+                    f.write(base_cmd_pc.format(mX=mX, mY=mY) + f" --stage evaluate --parameterize --pretrain {args.pretrain_weight}--param-mx-step {num_sparse} --param-my-step {num_sparse} --batch_size 2048\n")
 
     with open(os.path.join(farm_dir, f"run_param_train_scratch.sh"), "w") as f:
         for num_sparse in [1, 2, 3]:

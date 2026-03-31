@@ -105,9 +105,10 @@ Output will be similar as EveNet ones.
 ## Grid Script Generation [Optional]
 To generate the grid scripts for the ntuple production, you can use the following command:
 ```bash
-python3 Make_script.py --farm_dir Farm --json_file Farm/output_list.json --data_dir [data_dir] --out_dir [out_dir]
+python3 Make_script.py --farm_dir Farm --json_file Farm/output_list.json --data_dir database --out_dir result --pretrain-weight pretrain-weights/checkpoints.20M.a4.last.ckpt
 ```
-This will create the scripts to run full grid scan. i.e. `Farm/run_[method]_[stage].sh`. You can run the target stage/method then.
+This will create the scripts to run full grid scan. i.e. `Farm/run_[method]_[stage].sh`. It will consist all the needed command, you can run the target stage/method then, but suggest to use parallel running
+for full grid study.
 
 
 
