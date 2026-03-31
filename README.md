@@ -27,7 +27,7 @@ git clone --recursive https://github.com/EveNet-HEP/EveNet-Lite.git
 # Every time you open a new terminal, run this command to add the source code to your PYTHONPATH
 cd EveNet-Lite; export PYTHONPATH=$(pwd):$PYTHONPATH # If you want to use the source code directly
 ```
-### To Enable wandb logging
+### To Enable wandb logging [Optional]
 ```aiignore
 export WANDB_API_KEY=[your_wandb_api_key]
 ```
