@@ -112,7 +112,7 @@ python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml 
 python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX 500 --mY 90 --out_dir result --learning_rate 0.0003  --pretrain pretrain-weights/SSL.20M.last.ckpt --stage train predict evaluate  --use_adapter --wandb_dir /tmp --batch_size 4096 --gamma 0.0 --epochs 25
 python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX 500 --mY 90 --out_dir result --learning_rate 0.0003   --stage train predict evaluate --wandb_dir /tmp --batch_size 4096 --gamma 0.0 --epochs 25
 ```
-Output will be
+#### Output Structure
 ```aiignore
 result/[mva_method]/individual/MX-[mX]_MY-[mY]/
 ├── checkpoints/
