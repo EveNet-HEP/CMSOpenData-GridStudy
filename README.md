@@ -134,5 +134,24 @@ python3 Make_script.py --farm_dir Farm --json_file Farm/output_list.json --data_
 This will create the scripts to run full grid scan. i.e. `Farm/run_[method]_[stage].sh`. It will consist all the needed command, you can run the target stage/method then, but suggest to use parallel running
 for full grid study.
 
+## Computing Estimates
+The experiments in this work were performed on a computing cluster with **NVIDIA A100 40GB GPUs**.
+
+| **Hardware Configuration** | **Estimated Runtime**   | **Notes** | 
+|----------------------------|-------------------------|-----------|
+| 1 x NVIDIA A100 40GB GPU   | 30~40 mins / mass point | Cluster setup used in this work |
+
+
+It is important to note that this table reflects the cost of a single training/prediction run only.
+The full study reported in the paper involves multiple trainings for each mass points, and therefore requires substantially more total compute.
+
+The actual runtime may vary depending on:
+
+* data loading and I/O performance,
+* software environment (CUDA, PyTorch, etc.),
+* mixed precision settings,
+* batch size and gradient accumulation. 
+Due to the smaller GPU memory on consumer hardware compared to A100 40GB, reproducing the training may require reducing the per-device batch size, which can further increase the runtime.
+
 
 
