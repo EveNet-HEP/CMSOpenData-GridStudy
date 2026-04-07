@@ -108,9 +108,9 @@ hf download Avencast/EveNet-GridStudy-CMSOpenData \
 `--stage` configures the training stage, which can be set to `train`, `predict`, `evaluate`. It could also be sequentially run with `--stage train predict evalute`. 
 ```aiignore
 # Nominal pretrain
-python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX 500 --mY 90 --out_dir result --learning_rate 0.0003  --pretrain pretrain-weights/checkpoints.20M.a4.last.ckpt --stage train predict evaluate  --use_adapter --wandb_dir /tmp --batch_size 4096 --gamma 0.0 --epochs 25
-python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX 500 --mY 90 --out_dir result --learning_rate 0.0003  --pretrain pretrain-weights/SSL.20M.last.ckpt --stage train predict evaluate  --use_adapter --wandb_dir /tmp --batch_size 4096 --gamma 0.0 --epochs 25
-python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX 500 --mY 90 --out_dir result --learning_rate 0.0003   --stage train predict evaluate --wandb_dir /tmp --batch_size 1024 --gamma 0.0 --epochs 25
+python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX 500 --mY 90 --out_dir result --learning_rate 0.0003  --pretrain pretrain-weights/checkpoints.20M.a4.last.ckpt --stage train predict evaluate  --use_adapter --wandb_dir /tmp --batch_size 4096 --gamma 1.0 --epochs 25
+python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX 500 --mY 90 --out_dir result --learning_rate 0.0003  --pretrain pretrain-weights/SSL.20M.last.ckpt --stage train predict evaluate  --use_adapter --wandb_dir /tmp --batch_size 4096 --gamma 1.0 --epochs 25
+python3 train_pc_mva.py --base_dir database --yaml_path config/sample_bbWW.yaml --mX 500 --mY 90 --out_dir result --learning_rate 0.0003   --stage train predict evaluate --wandb_dir /tmp --batch_size 1024 --gamma 1.0 --epochs 25
 ```
 #### Output Structure
 ```aiignore
